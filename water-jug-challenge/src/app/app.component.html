@@ -1,43 +1,47 @@
 <div class="container">
   <!--navbar (title)-->
   <nav>
-    <span>Water Jug Problem</span>
+    <span class="space">Water Jug Problem</span>
   </nav>
 
-  <!--first paragraph (the problem)-->
-  <span>What is the Water Jug Problem</span>
+  <!--Content-->
+  <div class="space">
+    <!--first paragraph (the problem)-->
+    <span class="title-paragraph">What is the Water Jug Problem</span>
 
-  <p>
+    <div class="paragraph">
+      Build an application that solves the Water Jug Riddle for dynamic inputs (X, Y, Z). The simulation should have a UI (if SPA) to display state changes for each state for each jug (Empty, Full or Partially Full).
+      You have an X-gallon and a Y-gallon jug that you can fill from a lake. (Assume lake has unlimited amount of water.) By using only an X-gallon and Y-gallon jug (no third jug), measure Z gallons of water.
+    </div>
 
-  </p>
+    <!--second paragraph (the solution)-->
+    <span class="title-paragraph">How to solve the Water Jug Problem</span>
 
-  <!--second paragraph (the solution)-->
-  <span>How to solve the Water Jug Problem</span>
+    <div class="paragraph">
+      In order to solve this problem it was implemented a BFS algorithm (Breadth-First Search), the different decisions taken were considered as nodes of a tree, then if the option of the operation was in a range between 0 and the whole capacity of the buckets and it was not visited yet then the node was considered in the queue, the algorithm travels around all the posibilities at the same time until it founds a solution (represented as a node), once the node is found the application backtracks the father of the node and the father of that father until it reaches the root node, reverses the order and finally delivers the answer.
+    </div>
 
-  <p>
+    <!--Test the problem-->
+    <form>
 
-  </p>
+      <!--Bucket X-->
+      <input [(ngModel)]="bucket_x" type="number" name="bucket_x" placeholder="Bucket X" min="1" step="1" (keydown)="avoidDecimals($event,1)">
 
-  <!--Test the problem-->
-  <form action="">
+      <!--Bucket Y-->
+      <input [(ngModel)]="bucket_y" type="number" name="bucket_y" placeholder="Bucket Y" min="1" step="1" (keydown)="avoidDecimals($event,2)">
 
-    <!--Bucket X-->
-    <input type="number" name="bucket_x" id="">
+      <!--Measure Z-->
+      <input [(ngModel)]="measure_z" type="number" name="measure" placeholder="Measure Z" min="1" step="1" (keydown)="avoidDecimals($event,3)">
 
-    <!--Bucket Y-->
-    <input type="number" name="bucket_y" id="">
+      <!--Submit-->
+      <button class="submit-button" (click)="solve()" [disabled]="checkFields()">Submit</button>
+    </form>
 
-    <!--Measure Z-->
-    <input type="number" name="measure" id="">
-
-    <!--Submit-->
-
-    <input type="submit" value="Subir">
-
-  </form>
+    <span class="title-paragraph">{{displayedMessage}}</span>
+  </div>
 
   <!--Results table-->
 
-  <app-results-table></app-results-table>
+  <app-results-table [stepsArray]="stepsOrder"></app-results-table>
 </div>
 

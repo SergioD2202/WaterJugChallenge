@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-results-table',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results-table.component.scss']
 })
 export class ResultsTableComponent implements OnInit {
+
+  @Input() stepsArray:any[] = []
+
+  displayedColumns: string[] = ['x', 'y', 'explanation'];
 
   constructor() { }
 
