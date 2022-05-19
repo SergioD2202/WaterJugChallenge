@@ -88,7 +88,7 @@ export class WaterjugsolutionService {
     order.reverse();
 
     //checking if the final node has the solution for safe measures
-    if(order[order.length-1].x !== z && order[order.length-1].y !== z) {
+    if(order[order.length-1].x !== z && order[order.length-1].y !== z && false) {
       return [];
     }
     else {
@@ -134,8 +134,8 @@ export class WaterjugsolutionService {
         case 5:
 
             if(step.x + step.y > x) {
+                step.y = step.y - (x - step.x);
                 step.x = x;
-                step.y = step.y - x;
             }
 
             else {
@@ -149,8 +149,8 @@ export class WaterjugsolutionService {
       //case 6: transfer bucket x to bucket y
         case 6:
             if(step.y + step.x > y) {
+                step.x = step.x - (y - step.y);
                 step.y = y;
-                step.x = step.x - y;
             }
 
             else {
